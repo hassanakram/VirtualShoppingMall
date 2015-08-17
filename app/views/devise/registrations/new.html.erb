@@ -1,11 +1,17 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true })  do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :image, resource.build_image do |f_image| %>
+      <%= f_image.file_field :photo, value: 'Upload Image' %>
+    <% end %>
   </div>
 
   <div class="field">
