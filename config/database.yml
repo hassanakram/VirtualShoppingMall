@@ -28,7 +28,7 @@ test:
   database: VirtualShoppingMall_test
   pool: 5
   username: root
-  password: toor
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -38,5 +38,5 @@ production:
   database: VirtualShoppingMall_production
   pool: 5
   username: root
-  password: toor
+  password: 
   socket: /var/run/mysqld/mysqld.sock
