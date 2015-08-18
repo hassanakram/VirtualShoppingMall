@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150818043228) do
+ActiveRecord::Schema.define(:version => 20150818095116) do
 
   create_table "images", :force => true do |t|
     t.integer  "imageable_id"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(:version => 20150818043228) do
     t.decimal  "price",      :precision => 10, :scale => 0
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.text     "review"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
