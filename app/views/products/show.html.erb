@@ -19,5 +19,11 @@
     <%= image_tag image.photo(:thumb) %>
   <% end %>
 </p>
+
+<div id="reviews">
+  <%= render @reviews %>
+</div>
+
+<%= render '/reviews/form', locals: { review: @review, product: @product } %>
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
