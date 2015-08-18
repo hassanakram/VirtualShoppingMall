@@ -9,12 +9,6 @@
   </div>
 
   <div class="field">
-    <%= f.fields_for :image, resource.build_image do |f_image| %>
-      <%= f_image.file_field :photo, value: 'Upload Image' %>
-    <% end %>
-  </div>
-
-  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
