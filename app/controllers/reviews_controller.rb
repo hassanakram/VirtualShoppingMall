@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :set_review, only: [:show, :edit, :update, :destroy]
-  before_filter :set_product, only: [:create]
+  before_filter :set_product
 
   respond_to :html
 
