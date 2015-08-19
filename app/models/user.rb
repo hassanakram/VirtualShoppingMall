@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :image_attributes
 
   has_one :image, as: :imageable, dependent: :destroy
+  has_many :products
 
   accepts_nested_attributes_for :image
 
