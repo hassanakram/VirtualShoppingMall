@@ -20,7 +20,7 @@
         <td><%= product.title.titleize %></td>
         <td><%= product.body %></td>
         <td><%= product.price %></td>
-        <%= render "products/shared/links", product: product, user: @user %>
+        <td><%= link_to 'Show', product %></td>
       </tr>
     <% end %>
   </tbody>
