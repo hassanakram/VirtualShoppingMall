@@ -3,7 +3,7 @@
   <%= image_tag @user.image.photo.url(:thumb) %>
 <% end %>
 <h1>My Products</h1>
-<%= paginate @products %>
+<%= paginate @products , param_name: 'product_page' %>
 <table>
   <thead>
     <tr>
@@ -25,3 +25,7 @@
     <% end %>
   </tbody>
 </table>
+<h1>My Recent Reviews</h1>
+<%= paginate @reviews, param_name: 'review_page' %>
+
+<%= render @reviews %>
