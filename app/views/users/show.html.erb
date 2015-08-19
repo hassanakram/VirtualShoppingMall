@@ -2,3 +2,26 @@
 <% if @user.image.present? %>
   <%= image_tag @user.image.photo.url(:thumb) %>
 <% end %>
+<h1>My Products</h1>
+<%= paginate @products %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.title.titleize %></td>
+        <td><%= product.body %></td>
+        <td><%= product.price %></td>
+        <%= render "products/shared/links", product: product, user: @user %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
