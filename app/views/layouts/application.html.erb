@@ -16,6 +16,16 @@
   <% end %>
 </div>
 
+<div id="current_user">
+  <% if user_signed_in? %>
+    signed in as <%= current_user.email %>
+   <b> <%= link_to "Sign out", destroy_user_session_path, method: :delete %> </b>
+  <% else %>
+   <b> <%= link_to "Sign in", new_user_session_path %> </b>
+   <b> <%= link_to "Sign up", new_user_registration_path %> </b>
+  <% end %>
+</div>
+
 <%= yield %>
 
 </body>
