@@ -1,0 +1,4 @@
+<p><b><%= @user.email %></b></p>
+<% if @user.image.present? %>
+  <%= image_tag @user.image.photo.url(:thumb) %>
+<% end %>
