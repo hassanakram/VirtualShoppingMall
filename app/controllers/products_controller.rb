@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate_user!, only: [:edit, :new, :create, :update]
   before_filter :set_product, only: [:show, :edit, :update, :destroy]
+  before_filter :validate_user, only: [:edit, :new, :create, :update, :destroy]
 
   respond_to :html
 
@@ -42,5 +44,9 @@ class ProductsController < ApplicationController
   private
     def set_product
       @product = Product.find(params[:id])
+    end
+
+    def validate_user
+      return(redirect_to root_path, alert: "Unauthorized Access") unless current_user.is_owner?(@product.user_id)
     end
 end
