@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_one :image, as: :imageable, dependent: :destroy
   has_many :products
+  has_many :reviews
 
   accepts_nested_attributes_for :image
 

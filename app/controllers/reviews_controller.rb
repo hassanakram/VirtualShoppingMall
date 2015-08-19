@@ -22,9 +22,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = @product.reviews.build(params[:review])
+    @review = @product.reviews.new(params[:review])
+    @review.user = current_user
     @review.save
-    respond_to :js
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def update
