@@ -1,16 +1,18 @@
-<p><b><%= @user.email %></b></p>
-<% if @user.image.present? %>
-  <%= image_tag @user.image.photo.url(:thumb) %>
+<p><b><%= current_user.email %></b></p>
+<% if current_user.image.present? %>
+  <%= image_tag current_user.image.photo.url(:thumb) %>
 <% end %>
-<h1>My Products</h1>
-<%= paginate @products %>
+
+<h1> My Products</h1>
+
+<%= paginate @products , param_name: 'product_page' %>
+
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
       <th>Price</th>
-      <th>Images</th>
       <th></th>
     </tr>
   </thead>
@@ -33,3 +35,9 @@
     <% end %>
   </tbody>
 </table>
+
+<h1>My Recent Reviews</h1>
+
+<%= paginate @reviews, param_name: 'review_page' %>
+
+<%= render @reviews %>
