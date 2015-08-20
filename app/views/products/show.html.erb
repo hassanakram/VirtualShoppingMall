@@ -28,7 +28,7 @@
 <div id="reviews">
   <%= render @reviews %>
 </div>
-<% unless authorised_owner(@product.user_id) %>
+<% if user_signed_in? && (not authorised_owner(@product.user_id)) %>
   <%= render '/reviews/form', locals: { review: @review, product: @product } %>
 <% end %>
 <div id="update_review"></div>
