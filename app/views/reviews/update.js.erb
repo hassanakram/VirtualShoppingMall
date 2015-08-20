@@ -1,0 +1,3 @@
+$('#new_review').show();
+$('#update_review').html("");
+$("#review_<%= @review.id %>").replaceWith(" <%= escape_javascript(render(partial: @review)) %> ");

@@ -1,0 +1,2 @@
+$('#new_review').hide()
+$('#update_review').html("<%= escape_javascript(render 'form', product: @product, review: @review) %>");

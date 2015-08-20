@@ -20,10 +20,15 @@
   <% end %>
 </p>
 
+<% if authorised_owner(@product.user_id) %>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Destroy' , @product, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
 <div id="reviews">
   <%= render @reviews %>
 </div>
-
-<%= render '/reviews/form', locals: { review: @review, product: @product } %>
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<% unless authorised_owner(@product.user_id) %>
+  <%= render '/reviews/form', locals: { review: @review, product: @product } %>
+<% end %>
+<div id="update_review"></div>

@@ -16,4 +16,7 @@ class User < ActiveRecord::Base
     self.image.present? ? self.image : self.build_image
   end
 
+  def is_owner?(user_id)
+    self.id == user_id
+  end
 end

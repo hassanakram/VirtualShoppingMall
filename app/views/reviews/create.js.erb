@@ -1,2 +1,2 @@
-$("#reviews").append("<%= escape_javascript(render(partial: @review)) %>");
+$("#reviews").append('<div id=review_<%= @review.id %> <%= escape_javascript(render(partial: @review)) %>');
 $('#new_review')[0].reset();
