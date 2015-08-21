@@ -5,6 +5,8 @@ class Review < ActiveRecord::Base
 
   attr_accessible :review
 
+  validates :review, presence: true
+
   belongs_to :product
   belongs_to :user
 
