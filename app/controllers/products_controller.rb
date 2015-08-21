@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!, only: [:edit, :new, :create, :update]
   before_filter :set_product, only: [:show, :edit, :update, :destroy]
-  before_filter :validate_user, only: [:edit, :new, :create, :update, :destroy]
+  before_filter :validate_user, only: [:edit, :update, :destroy]
 
   respond_to :html
 
