@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, required: true, maxlength: 40, size: 40 %>
   </div>
   <div class="field">
     <%= f.label :body %><br />
@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :price %><br />
-    <%= f.text_field :price %>
+    <%= f.text_field :price, required: true, type: "number" %>
   </div>
   <div class="field">
     <%= f.fields_for :images do |image_form| %>
