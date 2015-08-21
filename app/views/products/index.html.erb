@@ -7,13 +7,18 @@
 <% @products.in_groups_of(4, false).each do |group| %>
 
   <div class="row top-buffer">
-      <% group.each do |product| %>
-          <%= link_to(product) do %>
-            <div class="col-xs-6 col-md-3">
-              <%= product_image(product) %>
-            </div>
-          <% end %>
-      <% end %>
+    <% group.each do |product| %>
+      <div class="col-xs-6 col-md-3">
+        <div class="view view-first">
+          <%= product_image(product) %>
+          <div class="mask">
+            <h2> <%= render_title(product.title) %> </h2>
+            <p> <%= render_short_description(product.body) %> </p>
+            <%= link_to "Show details", product, class: "info" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="row top-buffer"></div>

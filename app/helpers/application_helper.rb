@@ -23,6 +23,10 @@ module ApplicationHelper
     title.present? ? title.titleize : ""
   end
 
+  def render_short_description(description)
+    description.present? ? description[0..50] : ""
+  end
+
   def product_image(product)
     if product.images.present?
       image_tag product.images.first.photo.url(:thumb)
