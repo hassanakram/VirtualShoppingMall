@@ -4,7 +4,7 @@ class Image < ActiveRecord::Base
 
   attr_accessible :photo
 
-  has_attached_file :photo, styles: { medium: "500x500>", thumb: "100x100>" }
+  has_attached_file :photo, styles: { medium: "500x500>", thumb: "270x180!" }
 
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 

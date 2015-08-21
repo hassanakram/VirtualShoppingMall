@@ -22,4 +22,12 @@ module ApplicationHelper
   def render_title(title)
     title.present? ? title.titleize : ""
   end
+
+  def product_image(product)
+    if product.images.present?
+      image_tag product.images.first.photo.url(:thumb)
+    else
+      image_tag("sample_product.gif")
+    end
+  end
 end
