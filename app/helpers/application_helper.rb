@@ -19,12 +19,16 @@ module ApplicationHelper
     user_signed_in? && current_user.id == user_id
   end
 
+  def full_name(user)
+    [user.first_name, user.last_name].join(" ")
+  end
+
   def render_title(title)
     title.present? ? title.titleize : ""
   end
 
   def render_short_description(description)
-    description.present? ? description[0..50] : ""
+    description.present? ? description.truncate(50) : ""
   end
 
   def product_image(product)

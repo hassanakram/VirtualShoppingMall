@@ -3,36 +3,66 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, autofocus: true, required: true, maxlength: 30, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, required: true, maxlength: 30, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true, class: "form-control" %>
+    </div>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <%= f.fields_for :image, current_user.fetch_image do |f_image| %>
-    <%= f_image.file_field :photo, value: 'Upload Image' %>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.fields_for :image, current_user.fetch_image do |f_image| %>
+        <%= f_image.file_field :photo, value: 'Upload Image' %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-lg-4">
+      <div class="actions">
+        <%= f.submit "Update", class: "btn btn-default" %>
+      </div>
+    </div>
   </div>
 <% end %>
 
