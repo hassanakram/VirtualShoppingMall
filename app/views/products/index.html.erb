@@ -4,17 +4,21 @@
 
 <%= paginate @products %>
 
-<% @products.in_groups_of(4, false).each do |group| %>
+<% @products.in_groups_of(3, false).each do |group| %>
 
   <div class="row top-buffer">
     <% group.each do |product| %>
-      <div class="col-xs-6 col-md-3">
+      <div class="col-xs-6 col-md-4">
         <div class="view view-first">
           <%= product_image(product) %>
           <div class="mask">
             <h2> <%= render_title(product.title) %> </h2>
             <p> <%= render_short_description(product.body) %> </p>
             <%= link_to "Show details", product, class: "info" %>
+          </div>
+          <div class="item_foot">
+            <span class="price pull-left">$<%= product.price %></span>
+            <span class="created_by pull-right">Seller : <%= link_to full_name(product.user), user_path(product.user) %> </span>
           </div>
         </div>
       </div>

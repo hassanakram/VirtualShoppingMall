@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-  PER_PAGE_SIZE = 20
+  PER_PAGE_SIZE = 12
   paginates_per PER_PAGE_SIZE
 
   attr_accessible :body, :price, :title, :images_attributes
