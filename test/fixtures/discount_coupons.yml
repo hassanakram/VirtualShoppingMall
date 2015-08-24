@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  coupen: MyString
+  expiry_date: 2015-08-24 16:08:42
+  activated: false
+
+two:
+  coupen: MyString
+  expiry_date: 2015-08-24 16:08:42
+  activated: false

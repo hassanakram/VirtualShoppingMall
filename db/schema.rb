@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150824073850) do
+ActiveRecord::Schema.define(:version => 20150824110841) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(:version => 20150824073850) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "discount_coupons", :force => true do |t|
+    t.string   "coupen_number"
+    t.boolean  "valid"
+    t.integer  "discount_percentage"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "images", :force => true do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
@@ -53,6 +61,20 @@ ActiveRecord::Schema.define(:version => 20150824073850) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "order_items", :force => true do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "discount_coupon_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
