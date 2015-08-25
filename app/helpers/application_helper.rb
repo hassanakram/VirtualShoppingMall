@@ -38,4 +38,9 @@ module ApplicationHelper
       image_tag("sample_product.gif")
     end
   end
+
+  def added_to_cart?(product_id)
+    cookies["cart_items"].present? ? cookies["cart_items"].include?(product_id) : false
+  end
+
 end

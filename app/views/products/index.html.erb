@@ -20,6 +20,9 @@
             <span class="price pull-left">$<%= product.price %></span>
             <span class="created_by pull-right">Seller : <%= link_to full_name(product.user), user_path(product.user) %> </span>
           </div>
+          <div class="cart">
+            <%= submit_tag "Add to cart", data: { productid: product.id, product_price: product.price }, class: "btn btn-success add_to_cart", disabled: added_to_cart?(product.id.to_s) %>
+          </div>
         </div>
       </div>
     <% end %>

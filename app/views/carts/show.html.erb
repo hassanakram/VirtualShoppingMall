@@ -1,0 +1,74 @@
+<div class="col-md-12">
+  <div class="table-responsive cart-div">
+    <% if @products.present? %>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Details</th>
+            <th>Qty.</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @products.each do |product| %>
+            <tr id="product_<%= product.id %>" >
+              <td><%= link_to render_title(product.title), product %></td>
+              <td>1</td>
+              <td>$<%= product.price %></td>
+              <td>$<%= product.price %></td>
+              <td>
+                <%= submit_tag "Remove", data: { productid: product.id, product_price: product.price }, class: "btn btn-danger delete_from_cart" %>
+              </td>
+            </tr>
+          <% end %>
+
+          <tr class="cart-footer">
+            <td colspan="2">
+              <div class="cart-total ">
+                <strong>
+                  <div>Total Billing Amout :</div>
+                  <span id="total-price">
+                    <%= @products.sum(&:price) %>
+                  </span>
+                  <div>USD</div>
+                </strong>
+                <br>
+                <small class="text-muted">all amount exclusive of any type of tax.</small>
+                <hr>
+              </div>
+              <input type="text" class="form-control" style="width:120px;" placeholder="Enter Coupon">
+              <small class="text-muted">(apply Coupon if you have any )</small>
+              <br>
+              <br>
+              <a href="#" class="btn btn-warning">
+                <span class="glyphicon glyphicon-ok"></span>
+                <div>Apply Coupon</div>
+              </a>
+              <hr>
+            </td>
+            <td colspan="3">
+              <h4>Terms &amp; Conditions : </h4>
+              <div>You must agree with the terms and conditions of sales to check out.</div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> I Agree to the terms .
+                </label>
+              </div>
+              <hr>
+              <%= link_to "CONTINUE SHOPPING", products_path, class: "btn btn-info" %>
+              <a href="#" class="btn btn-success">
+                <span class="glyphicon glyphicon-share-alt"></span>
+                <div>CHECKOUT</div>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% else %>
+      <h1>You don't have any product in the cart.</h1>
+    <% end %>
+  </div>
+</div>
