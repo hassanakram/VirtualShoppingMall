@@ -25,7 +25,9 @@
   <%= link_to 'Destroy' , @product, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
 
+
 <div id="reviews">
+  <%= paginate @reviews %>
   <%= render @reviews %>
 </div>
 <% if user_signed_in? && (not authorised_owner(@product.user_id)) %>

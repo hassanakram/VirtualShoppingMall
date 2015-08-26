@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @reviews = @product.reviews
+    @reviews = @product.reviews.ordered.page(params[:page])
     @review = @product.reviews.build
     respond_with(@product)
   end
