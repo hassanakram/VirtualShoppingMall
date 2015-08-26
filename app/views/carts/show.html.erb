@@ -39,14 +39,19 @@
                 <small class="text-muted">all amount exclusive of any type of tax.</small>
                 <hr>
               </div>
-              <input type="text" class="form-control" style="width:120px;" placeholder="Enter Coupon">
-              <small class="text-muted">(apply Coupon if you have any )</small>
-              <br>
-              <br>
-              <a href="#" class="btn btn-warning">
-                <span class="glyphicon glyphicon-ok"></span>
-                <div>Apply Coupon</div>
-              </a>
+              <%= form_for :discount_coupons, method: :post,  url: discount_coupons_valid_token_path, html: {id: 'discount_form' , remote: true} do |f| %>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <%= f.text_field :coupon_number, class: "form-control", placeholder: "Enter Coupon" %>
+                    <small class="text-muted">(apply Coupon if you have any )</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <%= f.submit "Submit Coupon Code", class: "btn btn-warning" %>
+                  </div>
+                </div>
+              <% end %>
               <hr>
             </td>
             <td colspan="3">

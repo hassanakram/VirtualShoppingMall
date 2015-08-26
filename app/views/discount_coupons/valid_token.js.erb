@@ -1,0 +1,10 @@
+<% if @valid_token.blank? %>
+  $( "<div class='alert alert-danger fade in'><button class='close' data-dismiss='alert'>x</button>Invalid token.</div>" ).insertAfter( "#discount_coupons_coupon_number" );
+<% else %>
+  cart_price = parseInt($('#cartprice').text());
+  discount_percentage = <%= @valid_token.discount_percentage %>;
+  $('#cartprice').text(cart_price - cart_price * (discount_percentage/100));
+  $('#total-price').text(cart_price - cart_price * (discount_percentage/100));
+  $('#discount_form').remove();
+  $( "<div class='alert alert-success fade in'><button class='close' data-dismiss='alert'>x</button><%= @valid_token.discount_percentage %>% Discount has been added</div>" ).insertAfter(".cart-total");
+<% end %>
