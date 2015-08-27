@@ -20,7 +20,21 @@
           </button>
           <%= link_to 'Virtual Shopping Mall', root_path, class: "navbar-brand" %>
         </div>
-
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Home', root_path%></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Products
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Create Product', new_product_path %></li>
+              <li><%= link_to 'Recent Products', products_path %></li>
+            </ul>
+          </li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="my_cart_details">
             <%= link_to checkout_path do %>
@@ -37,7 +51,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to "My Dashboard", dashboard_path %></li>
-                <li><a href="#">My Products</a></li>
+                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
               </ul>
