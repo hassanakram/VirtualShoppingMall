@@ -1,35 +1,30 @@
-<p><b><%= @user.email %></b></p>
-<% if @user.image.present? %>
-  <%= image_tag @user.image.photo.url(:thumb) %>
-<% end %>
+<h1><%= full_name(@user) %></h1>
+<div><%= user_image(@user) %></div>
+<hr>
 <h1>My Products</h1>
 <%= paginate @products %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Images</th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= render_title(product.title) %></td>
-        <td><%= product.body %></td>
-        <td><%= product.price %></td>
-
-        <td>
-          <% product.images.each do |image| %>
-            <%= image_tag image.photo.url(:thumb) %>
-          <% end %>
-        </td>
-
-        <td><%= link_to 'Show', product %></td>
-      </tr>
+<% @products.in_groups_of(3, false).each do |group| %>
+  <div class="row top-buffer">
+    <% group.each do |product| %>
+      <div class="col-xs-6 col-md-4">
+        <div class="view view-first">
+          <%= product_image(product) %>
+          <div class="mask">
+            <h2><%= render_title(product.title) %></h2>
+            <p><%= render_short_description(product.body) %></p>
+            <%= link_to "Show details", product, class: "info" %>
+          </div>
+          <div class="item_foot">
+            <span class="price pull-left">$<%= product.price %></span>
+            <span class="created_by pull-right">Seller : <%= link_to full_name(product.user), user_path(product.user) %></span>
+          </div>
+          <div class="cart">
+            <%= submit_tag "Add to cart", data: { productid: product.id, product_price: product.price }, class: "btn btn-success add_to_cart", disabled: added_to_cart?(product.id.to_s) %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <div class="row top-buffer"></div>
+<% end %>
