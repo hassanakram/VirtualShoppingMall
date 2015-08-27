@@ -46,6 +46,7 @@ class ReviewsController < ApplicationController
     @review.destroy
     respond_to do |format|
       format.js
+      format.html {redirect_to(dashboard_path, alert: "Review deleted successfully.")}
     end
   end
 

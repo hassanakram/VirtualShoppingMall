@@ -28,17 +28,23 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
     @product.user_id = current_user.id
     @product.save
-    respond_with(@product)
+    respond_to do |format|
+      format.html { @product.save ? (redirect_to @product, notice: "Product created successfully.") : (redirect_to new_product_path, alert: "Error creating product.") }
+    end
   end
 
   def update
     @product.update_attributes(params[:product])
-    respond_with(@product)
+    respond_to do |format|
+      format.html { @product.save ? (redirect_to @product, notice: "Product saved successfully.") : (redirect_to edit_product_path(@product), alert: "Error saving product.") }
+    end
   end
 
   def destroy
     @product.destroy
-    respond_with(@product)
+    respond_to do |format|
+      format.html {redirect_to current_user, notice: "Product deleted successfully."}
+    end
   end
 
   private
