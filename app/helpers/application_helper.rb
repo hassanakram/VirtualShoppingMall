@@ -39,6 +39,10 @@ module ApplicationHelper
     end
   end
 
+  def user_image(user)
+    user.image.present? ? image_tag(user.image.photo.url(:thumb)) : image_tag("missing.png")
+  end
+
   def added_to_cart?(product_id)
     cookies["cart_items"].present? ? cookies["cart_items"].include?(product_id) : false
   end
