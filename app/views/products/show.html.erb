@@ -1,36 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @product.title %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="span5">
+      <%= product_image(@product) %>
+    </div>
+    <div class="span7">
+      <h2><%= @product.title %></h2>
+        <div class="span7"><%= @product.body %></div>
+      <h3>Price - $<%= @product.price %></h3>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Body:</b>
-  <%= @product.body %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-<p>
-  <% @product.images.each do |image| %>
-    <%= image_tag image.photo(:thumb) %>
+<div>
+  <% if @product.images.count > 1 %>
+    <% @product.images[1..-1].each do |image| %>
+      <%= image_tag image.photo(:thumb) %> |
+    <% end %>
   <% end %>
-</p>
+</div>
+
+<div class="cart">
+  <%= submit_tag "Add to cart", data: { productid: @product.id, product_price: @product.price }, class: "btn btn-success add_to_cart", disabled: added_to_cart?(@product.id.to_s) %>
+</div>
 
 <% if authorised_owner(@product.user_id) %>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <%= link_to 'Destroy' , @product, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_product_path(@product),class: "btn btn-primary" %> |
+  <%= link_to 'Destroy' , @product, method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+<% else %>
+  <span><%= link_to "More from this seller", user_path(@product.user), class: "btn btn-success btn-large" %> </span>
 <% end %>
 
-
-<div id="reviews">
-  <%= paginate @reviews %>
-  <%= render @reviews %>
-</div>
-<% if user_signed_in? && (not authorised_owner(@product.user_id)) %>
-  <%= render '/reviews/form', locals: { review: @review, product: @product } %>
+<% if @reviews.present? %>
+  <hr>
+  <h2>Reviews on this product</h2>
+  <div id="reviews">
+    <%= paginate @reviews %>
+    <%= render @reviews %>
+  </div>
+  <% if user_signed_in? && (not authorised_owner(@product.user_id)) %>
+    <%= render '/reviews/form', locals: { review: @review, product: @product } %>
+  <% end %>
+  <div id="update_review"></div>
 <% end %>
-<div id="update_review"></div>

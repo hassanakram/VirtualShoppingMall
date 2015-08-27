@@ -1,7 +1,5 @@
 <h1>Listing products</h1>
 
-<h3><%= link_to 'Create new Product', new_product_path %></h3>
-
 <%= paginate @products %>
 
 <% @products.in_groups_of(3, false).each do |group| %>
