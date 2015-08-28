@@ -1,0 +1,9 @@
+<div class="form-container radius-box glassy-bg small-10 small-centered medium-8 large-6 columns">
+  <h2 class="mbs">Order Payment</h2>
+  <%= form_tag order_process_path do %>
+    <p>Please enter your payment details to proceed:</p>
+    <%= hidden_field_tag "user-token", @user_token %>
+    <div id="dropin"></div>
+    <%=submit_tag "Pay #{@total_amount}", class: "btn btn-success" %>
+  <% end %>
+</div>

@@ -1,5 +1,7 @@
 VirtualShoppingMall::Application.routes.draw do
 
+  get 'checkout' => 'orders#new'
+  post 'order/process' => 'orders#create'
   post "discount_coupons/valid_token"
   get 'carts/show'
   root :to => 'products#index'

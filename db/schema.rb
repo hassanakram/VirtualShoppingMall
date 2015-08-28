@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150825143020) do
+ActiveRecord::Schema.define(:version => 20150828054131) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(:version => 20150825143020) do
     t.integer  "discount_coupon_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "status"
+    t.string   "order_status"
+    t.string   "amount"
   end
 
   create_table "products", :force => true do |t|
