@@ -29,28 +29,37 @@
             <td colspan="2">
               <div class="cart-total ">
                 <strong>
-                  <div>Total Billing Amout :</div>
-                  <span id="total-price">
-                    <%= @products.sum(&:price) %>
-                  </span>
-                  <div>USD</div>
+                  <div>
+                    Total Billing Amout :
+                    <span id="total-price">
+                      <%= number_to_currency(cookies['total_price']) %>
+                    </span>
+                  </div>
+                  <div>
+                    After Discount :
+                    <span id="discount-price">
+                      <%= number_to_currency(cookies['discount_price']) %>
+                    </span>
+                  </div>
                 </strong>
                 <br>
                 <small class="text-muted">all amount exclusive of any type of tax.</small>
                 <hr>
               </div>
-              <%= form_for :discount_coupons, method: :post,  url: discount_coupons_valid_token_path, html: {id: 'discount_form' , remote: true} do |f| %>
-                <div class="row">
-                  <div class="form-group col-lg-6">
-                    <%= f.text_field :coupon_number, class: "form-control", placeholder: "Enter Coupon" %>
-                    <small class="text-muted">(apply Coupon if you have any )</small>
+              <% unless cookies['coupen'] %>
+                <%= form_for :discount_coupons, method: :post,  url: discount_coupons_valid_token_path, html: {id: 'discount_form' , remote: true} do |f| %>
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <%= f.text_field :coupon_number, class: "form-control", placeholder: "Enter Coupon" %>
+                      <small class="text-muted">(apply Coupon if you have any )</small>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-lg-6">
-                    <%= f.submit "Submit Coupon Code", class: "btn btn-warning" %>
+                  <div class="row">
+                    <div class="form-group col-lg-6">
+                      <%= f.submit "Submit Coupon Code", class: "btn btn-warning" %>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
               <hr>
             </td>
@@ -64,10 +73,7 @@
               </div>
               <hr>
               <%= link_to "CONTINUE SHOPPING", products_path, class: "btn btn-info" %>
-              <a href="#" class="btn btn-success">
-                <span class="glyphicon glyphicon-share-alt"></span>
-                <div>CHECKOUT</div>
-              </a>
+              <%= link_to "CHECKOUT", checkout_path, class: "btn btn-info" %>
             </td>
           </tr>
         </tbody>

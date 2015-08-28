@@ -37,11 +37,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li id="my_cart_details">
-            <%= link_to checkout_path do %>
+            <%= link_to carts_show_path do %>
               My Cart
               <span id="cartinfo">
                 ( <span id="cartqty">1</span> items )
-                $<span id="cartprice">0</span>.00
+                <span id="cartprice">0</span>
               </span>
             <% end %>
           </li>

@@ -30,9 +30,11 @@ $ ->
     $.cookie("total_items", $('#cartqty').text(), { path: '/'})
 
   $('.delete_from_cart').click ->
-    $('#cartqty').text(parseInt($("#cartqty").text()) - 1)
-    $('#cartprice').text(parseInt($('#cartprice').text()) - $(this).data("product-price"))
-    $('#total-price').text(parseInt($('#total-price').text()) - $(this).data("product-price"))
+    $('#cartqty').text(parseInt($.cookie("total_items") - 1))
+    $('#cartprice').text(parseInt($.cookie("total_price")) - $(this).data("product-price"))
+    $('#total-price').text(parseInt($.cookie("total_price")) - $(this).data("product-price"))
+    discount_price = $('#cartprice').text() - $('#cartprice').text() * $.cookie("discount_percentage")
+    $('#discount-price').text(discount_price)
     cart_products = $.cookie("cart_items")
     cart_products = cart_products.split(",")
     index = cart_products.indexOf("#{$(this).data("productid")}")
