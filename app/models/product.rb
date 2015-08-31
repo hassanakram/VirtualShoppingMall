@@ -18,4 +18,12 @@ class Product < ActiveRecord::Base
 
   scope :ordered, order('created_at DESC')
 
+  define_index do
+
+    indexes title
+    indexes body
+
+    has user_id, created_at, updated_at
+  end
+
 end
