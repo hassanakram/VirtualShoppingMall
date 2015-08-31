@@ -22,6 +22,9 @@ html, body {
    color: red;
 }
 
+.wrap-container {
+   min-height: 100%;
+}
 
 .created_by{
    display: block;

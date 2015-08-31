@@ -8,76 +8,76 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'Virtual Shopping Mall', root_path, class: "navbar-brand" %>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><%= link_to 'Home', root_path%></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Products
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Create Product', new_product_path %></li>
-              <li><%= link_to 'Recent Products', products_path %></li>
-            </ul>
-          </li>
-        </ul>
-
-        <%= form_tag products_path, method: 'get', class: "navbar-form navbar-left",role: "search"  do %>
-          <div class="form-group">
-            <%= text_field_tag :search_query, nil, placeholder: "Search products", class: "form-control" %>
+    <div class='wrap-container'>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to 'Virtual Shopping Mall', root_path, class: "navbar-brand" %>
           </div>
-          <%= submit_tag "Search", class: "btn btn-default" %>
-        <% end %>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li id="my_cart_details">
-            <%= link_to carts_show_path do %>
-              My Cart
-              <span id="cartinfo">
-                ( <span id="cartqty">1</span> items )
-                <span id="cartprice">0</span>
-              </span>
-            <% end %>
-          </li>
-          <li role="separator" class="divider"></li>
-          <% if user_signed_in? %>
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Home', root_path%></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Products
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "My Dashboard", dashboard_path %></li>
-                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
-                <li role="separator" class="divider"></li>
-                <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                <li><%= link_to 'Create Product', new_product_path %></li>
+                <li><%= link_to 'Recent Products', products_path %></li>
               </ul>
             </li>
-          <% else %>
-            <li> <%= link_to "Sign in", new_user_session_path %> </li>
-            <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+          </ul>
+
+          <%= form_tag products_path, method: 'get', class: "navbar-form navbar-left",role: "search"  do %>
+            <div class="form-group">
+              <%= text_field_tag :search_query, nil, placeholder: "Search products", class: "form-control" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-default" %>
           <% end %>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </nav>
 
-    <div class="container">
-      <%= flash_messages %>
-      <%= yield %>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="my_cart_details">
+              <%= link_to carts_show_path do %>
+                My Cart
+                <span id="cartinfo">
+                  ( <span id="cartqty">1</span> items )
+                  <span id="cartprice">0</span>
+                </span>
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.email %> <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "My Dashboard", dashboard_path %></li>
+                  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li> <%= link_to "Sign in", new_user_session_path %> </li>
+              <li> <%= link_to "Sign up", new_user_registration_path %> </li>
+            <% end %>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+      <div class="container">
+        <%= flash_messages %>
+        <%= yield %>
+      </div>
     </div>
-
     <div id="footer">
       <div class="container">
         <p class="muted credit" style="text-align: center" >
