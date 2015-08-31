@@ -1,5 +1,10 @@
 class DiscountCoupon < ActiveRecord::Base
 
+  attr_accessible :active, :coupen_number, :discount_percentage
+
+  validates :coupen_number, presence: true
+  validates :discount_percentage, presence: true, inclusion: { in: 1..99, message: "Percentage should be between 1 to 99" }
+
   has_many :orders
 
   scope :by_coupon_number, ->(coupon_number) { where(coupen_number: coupon_number) }
