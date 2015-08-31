@@ -6,7 +6,11 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    @products = Product.ordered.page(params[:page])
+    if params[:search_query].present?
+      @products = Product.ordered.search(params[:search_query], page: params[:page])
+    else
+      @products = Product.ordered.page(params[:page])
+    end
     respond_with(@products)
   end
 
