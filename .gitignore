@@ -11,9 +11,13 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+/log/*
 /tmp
 public/system/
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore sphinx files
+/db/sphinx/*
+/config/*.sphinx.conf
