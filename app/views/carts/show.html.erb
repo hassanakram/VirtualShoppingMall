@@ -68,12 +68,12 @@
               <div>You must agree with the terms and conditions of sales to check out.</div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> I Agree to the terms .
+                  <input type="checkbox" name="checkout"> I Agree to the terms .
                 </label>
               </div>
               <hr>
               <%= link_to "CONTINUE SHOPPING", products_path, class: "btn btn-info" %>
-              <%= link_to "CHECKOUT", checkout_path, class: "btn btn-info" %>
+              <%= link_to "CHECKOUT", checkout_path, class: "btn btn-info", id: "checkout-cart" %>
             </td>
           </tr>
         </tbody>
