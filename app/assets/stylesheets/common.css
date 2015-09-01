@@ -35,6 +35,12 @@ html, body {
   margin-top:20px;
 }
 
+.wrap-view{
+   width: 300px;
+   height: 300px;
+   margin: 0 auto;
+}
+
 .view {
    width: 300px;
    height: 300px;
@@ -44,11 +50,10 @@ html, body {
    overflow: hidden;
    position: relative;
    text-align: center;
-   -webkit-box-shadow: 1px 1px 2px #e6e6e6;
-   -moz-box-shadow: 1px 1px 2px #e6e6e6;
-   box-shadow: 1px 1px 2px #e6e6e6;
+   -webkit-box-shadow: 3px 3px 3px 4px #e6e6e6;
+   -moz-box-shadow: 3px 3px 3px 4px #e6e6e6;
+   box-shadow: 3px 3px 3px 4px #e6e6e6;
    cursor: default;
-   background: #fff url(../images/bgimg.jpg) no-repeat center center;
 }
 .view .mask,.view .content {
    width: 300px;
