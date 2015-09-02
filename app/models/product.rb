@@ -19,11 +19,10 @@ class Product < ActiveRecord::Base
   scope :ordered, order('created_at DESC')
 
   define_index do
-    set_property delta: true
-    indexes delta
     indexes title
     indexes body
 
+    set_property delta: true
     has user_id, created_at, updated_at
   end
 
