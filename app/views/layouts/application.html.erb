@@ -40,7 +40,7 @@
 
           <%= form_tag products_path, method: 'get', class: "navbar-form navbar-left",role: "search"  do %>
             <div class="form-group">
-              <%= text_field_tag :search_query, nil, placeholder: "Search products", class: "form-control" %>
+              <%= text_field_tag :search_query, @searched_for, placeholder: "Search products", class: "form-control" %>
             </div>
             <%= submit_tag "Search", class: "btn btn-default" %>
           <% end %>
