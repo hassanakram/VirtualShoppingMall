@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       order = current_user.orders.create
       order_params = { products: @products, amount: session['total_amount'], token: @token, cookies: cookies, current_user: current_user }
       order.update_order(order_params)
-      redirect_to root_url, notice: "Congraulations! Your transaction has been successfully!"
+      redirect_to root_url, notice: "Congraulations! Your transaction has been completed successfully!"
     else
       flash[:alert] = "Something went wrong while processing your transaction. Please try again!"
       @user_token = generate_client_token

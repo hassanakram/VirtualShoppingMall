@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="span5">
-      <h2><%= @product.title %></h2>
+      <h1><%= render_title(@product.title) %></h1>
       <hr>
       <%= product_image(@product) %>
       <div class="cart">
         <h4>Price - <%= number_to_currency(@product.price) %>
-          <%= submit_tag "Add to cart", data: { productid: @product.id, product_price: @product.price }, class: "btn btn-success", disabled: added_to_cart?(@product.id.to_s) %>
+          <%= submit_tag "Add to Cart", data: { productid: @product.id, product_price: @product.price }, class: "btn btn-success", disabled: added_to_cart?(@product.id.to_s) %>
         </h4>
       </div>
     </div>
@@ -20,7 +20,7 @@
 
 <div>
   <% if @product.images.count > 1 %>
-    <h3>More images</h3>
+    <h2>More Images</h2>
     <hr>
     <% @product.images[1..-1].each do |image| %>
       <%= link_to image.photo(:original), class: "more-images", rel: "more-images", data: { colorbox: true, colorbox_height: '800px', colorbox_width: '1300px', rel: true} do %>
@@ -33,13 +33,13 @@
 
 <% if authorised_owner(@product.user_id) %>
   <%= link_to 'Edit', edit_product_path(@product),class: "btn btn-primary" %>
-  <%= link_to 'Destroy' , @product, method: :delete, class: "btn btn-danger destroy-product", data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Delete' , @product, method: :delete, class: "btn btn-danger destroy-product", data: { confirm: 'Are you sure?' } %>
 <% else %>
   <span><%= link_to "More from this seller", user_path(@product.user) %> </span>
 <% end %>
 
 <% if @reviews.present? %>
-  <h3>Reviews on this product</h3>
+  <h2>Reviews on this product</h2>
 <% end %>
 <div id="reviews">
   <%= paginate @reviews %>
