@@ -12,6 +12,7 @@ gem 'kaminari'
 gem "nested_form"
 gem 'activeadmin'
 gem 'thinking-sphinx', '2.0.11'
+gem 'colorbox-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
