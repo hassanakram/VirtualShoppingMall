@@ -4,6 +4,6 @@
     <p>Please enter your payment details to proceed:</p>
     <%= hidden_field_tag "user-token", @user_token %>
     <div id="dropin"></div>
-    <%=submit_tag "Pay #{@total_amount}", class: "btn btn-success" %>
+    <%= submit_tag "Pay #{number_to_currency(@total_amount)}", class: "btn btn-success" %>
   <% end %>
 </div>
