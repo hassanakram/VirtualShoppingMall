@@ -43,3 +43,5 @@ $ ->
     $.cookie("total_price", $('#total-price').text(), { path: '/'})
     $.cookie("total_items", $('#cartqty').text(), { path: '/'})
     $(this).parent('td').parent('tr').remove()
+    if ($.cookie("total_items") == "0")
+      $(".cart-div").replaceWith("<div class='col-md-12'><h2>You don't have any product in the cart. <a href='/products'>Add products</a></h2></div>")
