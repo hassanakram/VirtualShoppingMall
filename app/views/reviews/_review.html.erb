@@ -2,21 +2,22 @@
 <% unless review.new_record? %>
   <hr>
   <div id="review_<%= review.id %>" >
-    <div class="media">
+    <div class="media review">
       <div class="media-body">
         <h4 class="media-heading">
           <%= link_to full_name(review.user), user_path(review.user) %>
-          <small><%= time_ago_in_words(review.created_at) %></small>
+          <small>posted <%= time_ago_in_words(review.created_at) %> ago</small>
         </h4>
         <%= review.review %>
       </div>
+      <div class="pull-right">
+        <% if authorised_owner(review.product.user_id) %>
+          <%= link_to 'Delete' , [review.product, review], remote: true, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+        <% elsif authorised_owner(review.user_id) %>
+          <%= link_to 'Edit', edit_product_review_path(review.product_id, review), remote: true, class: "btn btn-primary btn-sm" %>
+          <%= link_to 'Delete' , [review.product, review], remote: true, class: "btn btn-danger btn-sm destroy-product", method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
     </div>
-
-    <% if authorised_owner(review.product.user_id) %>
-      <%= link_to 'Delete' , [review.product, review], remote: true, method: :delete,  data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
-    <% elsif authorised_owner(review.user_id) %>
-      <%= link_to 'Edit', edit_product_review_path(review.product_id, review), remote: true, class: "btn btn-primary btn-sm" %> |
-      <%= link_to 'Delete' , [review.product, review], remote: true, class: "btn btn-danger btn-sm", method: :delete,  data: { confirm: 'Are you sure?' } %>
-    <% end %>
   </div>
 <% end %>
