@@ -7,6 +7,14 @@ label {
    text-transform: capitalize;
 }
 
+.span5 h1 {
+   display: inline;
+}
+
+.product-price {
+   margin-right: 90px;
+}
+
 #footer {
    text-align: center;
 }

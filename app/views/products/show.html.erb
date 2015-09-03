@@ -2,12 +2,21 @@
   <div class="row">
     <div class="span5">
       <h1><%= render_title(@product.title) %></h1>
-      <hr>
-      <%= product_image(@product) %>
-      <div class="cart">
+      <div class="pull-right product-price">
         <h4>Price - <%= number_to_currency(@product.price) %>
           <%= submit_tag "Add to Cart", data: { productid: @product.id, product_price: @product.price }, class: "btn btn-success", disabled: added_to_cart?(@product.id.to_s) %>
         </h4>
+      </div>
+      <hr>
+      <div>
+        <% if @product.images.count > 1 %>
+          <% @product.images.each do |image| %>
+            <%= link_to image.photo(:original), class: "more-images", rel: "more-images", data: { colorbox: true, colorbox_height: '800px', colorbox_width: '1300px', rel: true} do %>
+              <%= image_tag image.photo(:thumb) %>
+            <% end %>
+          <% end %>
+          <hr>
+        <% end %>
       </div>
     </div>
     <div class="span7">
@@ -17,19 +26,6 @@
 </div>
 
 <hr>
-
-<div>
-  <% if @product.images.count > 1 %>
-    <h2>More Images</h2>
-    <hr>
-    <% @product.images[1..-1].each do |image| %>
-      <%= link_to image.photo(:original), class: "more-images", rel: "more-images", data: { colorbox: true, colorbox_height: '800px', colorbox_width: '1300px', rel: true} do %>
-        <%= image_tag image.photo(:thumb) %>
-      <% end %>
-    <% end %>
-    <hr>
-  <% end %>
-</div>
 
 <% if authorised_owner(@product.user_id) %>
   <%= link_to 'Edit', edit_product_path(@product),class: "btn btn-primary" %>
