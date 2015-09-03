@@ -1,7 +1,7 @@
-<% if @searched_for.blank? %>
+<% if params[:search_query].blank? %>
   <h1>All Products</h1>
 <% else %>
-  <h1>Results For "<%= @searched_for %>"</h1>
+  <h1>Results For "<%= params[:search_query] %>"</h1>
 <% end %>
 <%= paginate @products %>
 

@@ -26,4 +26,20 @@ class Product < ActiveRecord::Base
     has user_id, created_at, updated_at
   end
 
+  def self.perform_search(options = {})
+    search_params = default_search_options(options)
+    Product.search(options[:search_query], search_params)
+  end
+
+  def self.default_search_options(options)
+    {
+      with: {},
+      include: :images,
+      order: "created_at DESC",
+      page: options[:page],
+      per_page: PER_PAGE_SIZE,
+    }
+  end
+
+
 end

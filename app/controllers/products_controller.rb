@@ -6,12 +6,7 @@ class ProductsController < ApplicationController
   respond_to :html
 
   def index
-    if params[:search_query].present?
-      @searched_for = params[:search_query]
-      @products = Product.search(params[:search_query], include: :images, order: "created_at DESC", page: params[:page], per_page: Product::PER_PAGE_SIZE)
-    else
-      @products = Product.ordered.page(params[:page]).includes(:images)
-    end
+    @products = Product.perform_search(params)
     respond_with(@products)
   end
 

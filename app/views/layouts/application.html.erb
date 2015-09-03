@@ -23,27 +23,8 @@
             <%= link_to 'Virtual Shopping Mall', root_path, class: "navbar-brand" %>
           </div>
           <ul class="nav navbar-nav">
-            <li><%= link_to 'Home', root_path%></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                Products
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to 'Create Product', new_product_path %></li>
-                <li><%= link_to 'Recent Products', products_path %></li>
-              </ul>
-            </li>
+            <li><%= link_to 'New Product', new_product_path %></li>
           </ul>
-
-          <%= form_tag products_path, method: 'get', class: "navbar-form navbar-left",role: "search"  do %>
-            <div class="form-group">
-              <%= text_field_tag :search_query, @searched_for, placeholder: "Search products", class: "form-control" %>
-            </div>
-            <%= submit_tag "Search", class: "btn btn-default" %>
-          <% end %>
 
           <ul class="nav navbar-nav navbar-right">
             <li id="my_cart_details">
@@ -71,6 +52,14 @@
               <li> <%= link_to "Sign up", new_user_registration_path %> </li>
             <% end %>
           </ul>
+
+          <%= form_tag products_path, method: 'get', class: "navbar-form navbar-right", role: "search"  do %>
+            <div class="form-group">
+              <%= text_field_tag :search_query, params[:search_query], placeholder: "Search products", class: "form-control" %>
+            </div>
+            <%= submit_tag "Search", class: "btn btn-default" %>
+          <% end %>
+
         </div><!-- /.navbar-collapse -->
       </nav>
 
